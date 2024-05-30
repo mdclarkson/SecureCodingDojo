@@ -54,7 +54,7 @@ public class UnlockCodeFilter implements Filter {
 				path = path.replaceAll(hsr.getContextPath(), "");
 
 				//for all paths except unlock redirect
-				if(!path.startsWith("/unlock.jsp") && !path.startsWith("/SetUnlockCode") && !path.startsWith("/public")  && !path.equals("/favicon.ico")){
+				if(!path.startsWith("/unlock.jsp") && !path.startsWith("/SetUnlockCode") && !path.startsWith("/public")  && !"/favicon.ico".equals(path)){
 					HttpSession session = hsr.getSession();
 					String userUnlockCode = (String) session.getAttribute(Constants.USER_UNLOCK_CODE);
 					if(unlockCode != userUnlockCode){

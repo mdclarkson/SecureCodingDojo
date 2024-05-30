@@ -49,7 +49,7 @@ public class Cwe434FileUpload extends HttpServlet {
 		
 		Part avatarPart = request.getPart("avatar");
 		String fileName = getFileName(avatarPart);
-		if(!fileName.equals("") && fileName.indexOf(".svg") == -1){
+		if(!"".equals(fileName) && fileName.indexOf(".svg") == -1){
 			 response.getWriter().println("Invalid file type. Maybe you need to add more extensions ;)");
 			 return;
 		}
@@ -62,7 +62,7 @@ public class Cwe434FileUpload extends HttpServlet {
 			
 		}
 		else{
-			if(fileName.equals("")) fileName="avatar.png";
+			if("".equals(fileName)) fileName="avatar.png";
 			fileName="public/"+fileName;
 			request.getSession().setAttribute("cwe434avatar", fileName);
 			request.getSession().setAttribute("cwe434displayName",displayName);

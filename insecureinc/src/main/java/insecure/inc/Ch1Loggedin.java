@@ -37,7 +37,7 @@ public class Ch1Loggedin extends HttpServlet {
                 Cookie cookie=cookies[i];
                 String cookieName = cookie.getName();
                 String cookieValue = cookie.getValue();
-                if(cookieName.equals("authToken") && cookieValue.equals(authToken)) return true;
+                if("authToken".equals(cookieName) && cookieValue.equals(authToken)) return true;
             }
         }
         return isAuth;

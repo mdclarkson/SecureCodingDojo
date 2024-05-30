@@ -47,7 +47,7 @@ public class Util {
 		if(pwd==null) return false;
 		byte [] digest = Crypto.getInstance().getHash(pwd+"PucMfDDfkG7jVOaaK51AjQ","SHA-256");
 		String passHashString = Base64.getEncoder().encodeToString(digest);    
-		return passHashString.equals("6lvOg9Sb1U8XIo2pNifNw+S3+Kk82+vX0E7CcqttkYU=");
+		return "6lvOg9Sb1U8XIo2pNifNw+S3+Kk82+vX0E7CcqttkYU=".equals(passHashString);
 	}
 	
 	/**
@@ -92,7 +92,7 @@ public class Util {
 	
 	
 	public static boolean hasScriptTagOrEvent(String value){
-		if(value==null || value.equals("")) return false;
+		if(value==null || "".equals(value)) return false;
 		//extract the image tag
 		Pattern p = Pattern.compile("(?i)(<script|['\"]\\son\\w+|\";\\w+\\()");
 		Matcher m = p.matcher(value);
@@ -103,7 +103,7 @@ public class Util {
 	}
 
 	public static boolean isMatch(String value, String pattern){
-		if(value==null || value.equals("")) return false;
+		if(value==null || "".equals(value)) return false;
 		Pattern p = Pattern.compile(pattern);
 		Matcher m = p.matcher(value);
 		if(m.find()){
@@ -114,7 +114,7 @@ public class Util {
 	
 	
 	public static boolean hasImgTag(String value){
-		if(value==null || value.equals("")) return false;
+		if(value==null || "".equals(value)) return false;
 		//extract the image tag
 		Pattern p = Pattern.compile("(?i)<img");
 		Matcher m = p.matcher(value);
@@ -125,7 +125,7 @@ public class Util {
 	}
 	
 	public static boolean hasImgTagAndEvent(String value){
-		if(value==null || value.equals("")) return false;
+		if(value==null || "".equals(value)) return false;
 		//extract the image tag
 		Pattern p = Pattern.compile("(?i)<img\\s*[^>]*on(error|load)\\s*=\\s*['\"]?\\s*(alert|prompt)");
 		Matcher m = p.matcher(value);
@@ -137,7 +137,7 @@ public class Util {
 	
 	public static boolean hasXSS(String value){
 		boolean result=false;
-		if(value==null || value.equals("")) return false;
+		if(value==null || "".equals(value)) return false;
 		//extract the image tag
 		Pattern p = Pattern.compile("(?i)<img\\s*[^>]*on(error|load)\\s*=\\s*['\"]?\\s*(alert|prompt)\\(['\"]FIRE!?['\"]\\)[^>]*>");
 		Matcher m = p.matcher(value);
@@ -157,7 +157,7 @@ public class Util {
 	
 	public static boolean hasCSRF(String value){
 		boolean result=false;
-		if(value==null || value.equals("")) return false;
+		if(value==null || "".equals(value)) return false;
 		//extract the image tag
 		Pattern p = Pattern.compile("(?i)(https?://[^/]+/)?cwe352loggedin.jsp\\?displayName=Banjo");
 		Matcher m = p.matcher(value);
@@ -176,7 +176,7 @@ public class Util {
 	
 	public static boolean isExternalProtocol(String value){
 		boolean result=false;
-		if(value==null || value.equals("")) return false;
+		if(value==null || "".equals(value)) return false;
 		//extract the image tag
 		Pattern p = Pattern.compile("(?i)system\\s*[\"']?(http|ftp|jar)");
 		Matcher m = p.matcher(value);
@@ -190,7 +190,7 @@ public class Util {
 	
 	public static boolean isValidServerName(String value){
 		boolean result=false;
-		if(value==null || value.equals("")) return false;
+		if(value==null || "".equals(value)) return false;
 		//extract the image tag
 		Pattern p = Pattern.compile("^[\\w\\.]+(\\s*;\\s*(cat|less)\\s*\\/etc\\/passwd)?$");
 		Matcher m = p.matcher(value);
