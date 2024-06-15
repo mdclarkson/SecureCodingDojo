@@ -7,6 +7,7 @@
 package serial;
 
 
+import io.github.pixee.security.ObjectInputFilters;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -117,7 +118,8 @@ public class SubmitObject extends HttpServlet {
 				}
 				ByteArrayInputStream in = new ByteArrayInputStream(objBytes);
 			    ObjectInputStream is = new ObjectInputStream(in);
-				Object cat = is.readObject(); //this should execute the file creation
+				   ObjectInputFilters.enableObjectFilterIfUnprotected(is);
+				   Object cat = is.readObject(); //this should execute the file creation
 				
 				output = Util.exec("/bin/ls","/tmp");
 				if(output.indexOf(filename)>-1){ //it worked
