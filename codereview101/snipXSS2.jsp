@@ -5,6 +5,6 @@
 
     <input type="submit" id="submit" class="btn" value="Search">
     <div class="alert alert-danger <%=alertVisibility%>">
-        Cannot find <%=request.getParameter("search")%>
+        Cannot find <%=org.owasp.encoder.Encode.forHtml(request.getParameter("search"))%>
     </div>
 </div>
