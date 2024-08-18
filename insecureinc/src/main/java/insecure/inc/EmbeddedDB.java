@@ -6,6 +6,7 @@
  */
 package insecure.inc;
 
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -31,7 +32,7 @@ public class EmbeddedDB {
 		  try {
 		     Driver derbyEmbeddedDriver = new EmbeddedDriver();
 		     DriverManager.registerDriver(derbyEmbeddedDriver);
-		     Random r = new Random();
+		     Random r = new SecureRandom();
 			 int val = r.nextInt(1000000);
 			 dbName = Integer.toString(val);
 		     conn = DriverManager.getConnection(String.format("jdbc:derby:memory:%s;create=true",dbName), "admin", "pass123");
