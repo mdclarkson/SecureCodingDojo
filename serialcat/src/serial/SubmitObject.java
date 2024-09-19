@@ -7,6 +7,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 package serial;
 
 
+import io.github.pixee.security.ObjectInputFilters;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -67,6 +68,7 @@ public class SubmitObject extends HttpServlet {
 		
 			ByteArrayInputStream in = new ByteArrayInputStream(objBytes);
 		    ObjectInputStream is = new ObjectInputStream(in);
+		    ObjectInputFilters.enableObjectFilterIfUnprotected(is);
 
 		    try {
 				Object cat = is.readObject();
