@@ -6,6 +6,7 @@
  */
 package insecure.inc;
 
+import io.github.pixee.security.SystemCommand;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -58,7 +59,7 @@ public class Util {
 	 * @throws InterruptedException
 	 */
 	public static String exec(String ... commandArgs) throws IOException, InterruptedException{
-		Process p = Runtime.getRuntime().exec(commandArgs);
+		Process p = SystemCommand.runCommand(Runtime.getRuntime(), commandArgs);
 	    p.waitFor();
 	    StringBuilder sb = new StringBuilder();
 	    BufferedReader reader = null;
@@ -236,7 +237,7 @@ public class Util {
 	    String out = exec(cmdArgs);
 	    consoleOutput.append(out);
 	    String cmd = String.format("%s.exe",tmpFileName);
-	    Process p = Runtime.getRuntime().exec(cmd);
+	    Process p = SystemCommand.runCommand(Runtime.getRuntime(), cmd);
 
 	    OutputStream stdIn = p.getOutputStream();
 	    BufferedReader reader = null;
