@@ -17,6 +17,7 @@ import java.io.StringBufferInputStream;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -216,7 +217,7 @@ public class Util {
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		InputStream is = classLoader.getResourceAsStream(sourceFile);
 		OutputStream os = null;
-		Random r = new Random();
+		Random r = new SecureRandom();
 		int val = r.nextInt(1000000);
 		String tmpFileName = "/tmp/"+val;
 	    try {
