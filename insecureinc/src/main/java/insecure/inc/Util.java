@@ -6,6 +6,7 @@
  */
 package insecure.inc;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -74,7 +75,7 @@ public class Util {
 	    	line+=s+" ";
 	    }
 	    sb.append(line+"\n");
-	    while ((line = reader.readLine())!= null) {
+	    while ((line = BoundedLineReader.readLine(reader, 5_000_000))!= null) {
 	    	sb.append(line + "\n");
 	    }
    
@@ -256,7 +257,7 @@ public class Util {
 	    
 	    String line = String.format("Executing command: %s",cmd);
 	    consoleOutput.append(line + "\n");
-	    while ((line = reader.readLine())!= null) {
+	    while ((line = BoundedLineReader.readLine(reader, 5_000_000))!= null) {
 	    	consoleOutput.append(line + "\n");
 	    }
 	    
@@ -329,12 +330,12 @@ public class Util {
 			
 			
 			reader = new BufferedReader(new InputStreamReader(input,"UTF-8"));
-	        String line = reader.readLine();
+	        String line = BoundedLineReader.readLine(reader, 5_000_000);
 
 	        while (line != null) {
 	            sb.append(line);
 	            sb.append("\n");
-	            line = reader.readLine();
+	            line = BoundedLineReader.readLine(reader, 5_000_000);
 	            if(sb.length()>1024 * 10) throw new Exception("Invalid file size");
 	        }
 		}
